@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
+<!-- <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LEVIDEOS — Leticia Videos</title>
+  <title>LETICIA SOUSA - LEVIDEOS</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap"
+    rel="stylesheet"> -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- TÍTULO (importante pra SEO) -->
+  <title>LEVIDEOS - Letícia Sousa</title>
+
+  <!-- DESCRIÇÃO (aparece no Google) -->
+  <meta name="description"
+    content="Assista aos vídeos exclusivos da Letícia Sousa no LEVIDEOS. Conteúdos atualizados, acesso rápido e experiência premium." />
+
+  <!-- PALAVRAS-CHAVE -->
+  <meta name="keywords"
+    content="Letícia Sousa, vídeos exclusivos, LEVIDEOS, conteúdo premium, vídeos online, entretenimento" />
+
+  <!-- AUTOR -->
+  <meta name="author" content="LEVIDEOS" />
+
+  <!-- INDEXAÇÃO -->
+  <meta name="robots" content="index, follow" />
+
+  <!-- CANONICAL (evita conteúdo duplicado) -->
+  <link rel="canonical" href="https://www.seusite.com/" />
+
+  <!-- OPEN GRAPH (Facebook / WhatsApp) -->
+  <meta property="og:title" content="Letícia Sousa - Vídeos Exclusivos" />
+  <meta property="og:description" content="Confira vídeos exclusivos da Letícia Sousa no LEVIDEOS." />
+  <meta property="og:image" content="https://www.seusite.com/preview.jpg" />
+  <meta property="og:url" content="https://www.seusite.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Letícia Sousa - Vídeos Exclusivos" />
+  <meta name="twitter:description" content="Confira vídeos exclusivos da Letícia Sousa no LEVIDEOS." />
+  <meta name="twitter:image" content="https://www.seusite.com/preview.jpg" />
+
+  <!-- FAVICON -->
+  <!-- <link rel="icon" href="/favicon.ico" /> -->
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎥</text></svg>">
+
+  <!-- GOOGLE FONTS (com preconnect para performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap"
     rel="stylesheet">
+
+  <!-- TEMA (mobile) -->
+  <meta name="theme-color" content="#000000" />
   <style>
     *,
     *::before,
@@ -162,6 +214,7 @@
       padding: 0 40px;
       animation: slideUp .9s cubic-bezier(.16, 1, .3, 1) .1s both;
       user-select: none;
+      margin-bottom: -43px;
     }
 
     .hero-sub-row {
@@ -656,7 +709,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .6s ease, filter .4s;
+      transition: transform 5.6s ease, filter .4s;
       filter: saturate(.8);
     }
 
@@ -1242,13 +1295,22 @@
       }
 
       .hero-photos {
-        display: none;
+        position: absolute;
+        width: 100%;
+        height: 45%;
+        display: flex;
+        gap: 5px;
+        padding: .1rem;
+        overflow: hidden;
+        animation: fadeIn 1.2s ease .4s both;
       }
 
       .hero-name {
-        font-size: clamp(3.2rem, 16vw, 7rem);
-        padding: 0 20px;
-        white-space: normal;
+        font-size: clamp(8.2rem, 16vw, 7rem);
+        padding: 15px 20px;
+        /* white-space: normal; */
+        white-space: nowrap;
+
         word-break: break-word;
         line-height: .9;
       }
@@ -1532,13 +1594,13 @@
     <!-- Placeholder photos — substitua pelos src das suas fotos reais -->
     <div class="hero-photos">
       <div class="hero-photo">
-        <img src="./imagens/IMG_9675.jpg" alt="Foto 2">
+        <img src="./imagens/IMG_0389.jpg" alt="Foto 2">
       </div>
       <div class="hero-photo">
-        <img src="./imagens/IMG_0370.jpg" alt="Foto 3">
+        <img src="./imagens/IMG_3212.jpg" alt="Foto 3">
       </div>
       <div class="hero-photo">
-        <img src="./imagens/Design sem nome.zip - 4.png" alt="Foto 1">
+        <img src="./imagens/IMG_2020.png" alt="Foto 1">
       </div>
     </div>
 
@@ -1665,7 +1727,7 @@
         </div>
       </div>
       <div class="gal-item fade-up" data-cat="aniversario">
-        <img src="./imagens/aniversario/IMG_0389.jpg" style="object-position: center 47%;"  alt="">
+        <img src="./imagens/aniversario/IMG_0389.jpg" style="object-position: center 20%;" alt="">
         <div class="gal-caption">
           <h3>Aniversário de 7 anos</h3><span>Aniversário · 2025</span>
         </div>
@@ -1703,32 +1765,25 @@
     </div>
     <div class="carousel-track-wrap">
       <div class="carousel-track" id="carTrack">
-        <div class="carousel-slide"><img src="./imagens/colecao/img1.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/img1.jpg" alt="">
           <div class="carousel-slide-num">01</div>
         </div>
-        <div class="carousel-slide"><img src="./imagens/colecao/img2.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/img2.jpg" alt="">
           <div class="carousel-slide-num">02</div>
         </div>
-        <div class="carousel-slide"><img src="./imagens/colecao/2.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/2.jpg" alt="">
           <div class="carousel-slide-num">03</div>
         </div>
-        <div class="carousel-slide"><img src="./imagens/colecao/img3.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/img3.jpg" alt="">
           <div class="carousel-slide-num">04</div>
         </div>
-        <div class="carousel-slide"><img src="./imagens/colecao/img4.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/img4.jpg" alt="">
           <div class="carousel-slide-num">05</div>
         </div>
-        <div class="carousel-slide"><img src="./imagens/colecao/img5.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/img5.jpg" alt="">
           <div class="carousel-slide-num">06</div>
         </div>
-          <div class="carousel-slide"><img src="./imagens/colecao/img6.jpg"
-            alt="">
+        <div class="carousel-slide"><img src="./imagens/colecao/img6.jpg" alt="">
           <div class="carousel-slide-num">07</div>
         </div>
       </div>
@@ -1745,7 +1800,7 @@
       <div class="service-card">
         <div class="service-n">01</div>
         <h3>Ensaio de Família</h3>
-        <p>Sessões em estúdio ou ambiente externo que capturam a dinâmica e o amor único de cada família.</p>
+        <p>Sessões em ambiente externo que capturam a dinâmica e o amor único de cada família.</p>
       </div>
       <div class="service-card">
         <div class="service-n">02</div>
@@ -1755,7 +1810,7 @@
       <div class="service-card">
         <div class="service-n">03</div>
         <h3>Ensaio Gestante</h3>
-        <p>Um registro delicado e poderoso da fase mais transformadora da vida — a chegada de um novo amor.</p>
+        <p>Um registro delicado e poderoso da fase mais transformadora da vida a chegada de um novo amor.</p>
       </div>
     </div>
   </section>
@@ -1786,7 +1841,8 @@
       <div class="contact-links">
         <a href="mailto:leticia@levideos.com" class="contact-link">leticia@levideos.com</a>
         <!-- <a href="tel:+5511999999999" class="contact-link">+55 11 9 9999-9999</a> -->
-        <a href="https://www.instagram.com/leticiasousa_videos/" target="_blank" class="contact-link">Instagram · @leticiasousa_videos</a>
+        <a href="https://www.instagram.com/leticiasousa_videos/" target="_blank" class="contact-link">Instagram ·
+          @leticiasousa_videos</a>
         <a href="#" class="contact-link">São Paulo, Brasil</a>
       </div>
     </div>
