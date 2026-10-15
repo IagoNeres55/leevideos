@@ -49,7 +49,8 @@
   <!-- FAVICON -->
   <!-- <link rel="icon" href="/favicon.ico" /> -->
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎥</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎥</text></svg>">
 
   <!-- GOOGLE FONTS (com preconnect para performance) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,46 +87,39 @@
       background: var(--bg);
       color: var(--black);
       font-family: 'DM Sans', sans-serif;
-      cursor: none;
       overflow-x: hidden;
     }
 
     /* ── CURSOR ── */
     .cursor {
       position: fixed;
-      width: 10px;
-      height: 10px;
-      background: var(--black);
-      border-radius: 50%;
+      width: 30px;
+      height: 36px;
       pointer-events: none;
       z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .25s, height .25s, background .25s;
+      transform: translate(-2px, -2px);
+      transition: transform .2s ease;
+      display: none;
+      filter: drop-shadow(0 2px 4px rgba(17, 16, 16, .22));
     }
 
-    .cursor-ring {
-      position: fixed;
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(17, 16, 16, .35);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width .3s, height .3s, opacity .3s;
-    }
+    @media (hover: hover) and (pointer: fine) {
+      body {
+        cursor: none;
+      }
 
-    body:has(a:hover) .cursor,
-    body:has(button:hover) .cursor {
-      width: 5px;
-      height: 5px;
-    }
+      .cursor {
+        display: block;
+      }
 
-    body:has(a:hover) .cursor-ring,
-    body:has(button:hover) .cursor-ring {
-      width: 54px;
-      height: 54px;
-      opacity: .2;
+      body:has(a:hover) .cursor,
+      body:has(button:hover) .cursor {
+        transform: translate(-2px, -2px) scale(1.12) rotate(-5deg);
+      }
+
+      body:has(.form-input:hover) .cursor {
+        display: none;
+      }
     }
 
     /* ── NAV ── */
@@ -976,7 +970,24 @@
       font-size: .95rem;
       color: var(--black);
       outline: none;
+      cursor: text;
       transition: border-color .3s;
+    }
+
+    select.form-input {
+      appearance: none;
+      border-radius: 0;
+      cursor: pointer;
+    }
+
+    select.form-input:invalid {
+      color: rgba(17, 16, 16, .3);
+      font-style: italic;
+    }
+
+    select.form-input option {
+      color: var(--black);
+      font-style: normal;
     }
 
     .form-input::placeholder {
@@ -1023,6 +1034,13 @@
       position: relative;
       overflow: hidden;
       transition: color .4s;
+    }
+
+    .form-note {
+      margin-top: -16px;
+      font-size: .75rem;
+      line-height: 1.6;
+      color: var(--gray);
     }
 
     .btn-send::before {
@@ -1260,8 +1278,7 @@
         cursor: auto;
       }
 
-      .cursor,
-      .cursor-ring {
+      .cursor {
         display: none;
       }
 
@@ -1566,8 +1583,12 @@
 
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <svg class="cursor" id="cursor" viewBox="0 0 24 30" aria-hidden="true">
+    <path d="M2.5 2.5v21l5.4-5.1 4.3 9.1 4-1.9-4.3-9.1h7.5L2.5 2.5Z" fill="#111010" stroke="#f2f0eb" stroke-width="1.5"
+      stroke-linejoin="round" />
+    <path d="m5 7 0 12.8 3.8-3.6" fill="none" stroke="#f2f0eb" stroke-width=".8" stroke-linecap="round"
+      stroke-linejoin="round" opacity=".7" />
+  </svg>
 
   <!-- NAV -->
   <nav>
@@ -1615,7 +1636,7 @@
         <span>Fotografia · São Paulo</span>
         <span>Família · Ensaios · Editorial</span>
         <a href="#gallery" class="hero-cta">
-          <span>Ver portfólio</span>
+          <span>Veja alguns trabalhos</span>
           <span class="arr">→</span>
         </a>
       </div>
@@ -1812,6 +1833,16 @@
         <h3>Ensaio Gestante</h3>
         <p>Um registro delicado e poderoso da fase mais transformadora da vida a chegada de um novo amor.</p>
       </div>
+      <div class="service-card">
+        <div class="service-n">04</div>
+        <h3>Pré-wedding</h3>
+        <p>Um ensaio especial para celebrar a história do casal e guardar a emoção que antecede o grande dia.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-n">05</div>
+        <h3>Social Media</h3>
+        <p>Fotos e vídeos criativos para fortalecer sua presença nas redes e aproximar sua marca do público.</p>
+      </div>
     </div>
   </section>
 
@@ -1839,32 +1870,40 @@
       <h2>VAMOS<br>CRIAR<br><em>ALGO</em></h2>
       <p>Cada projeto começa com uma conversa. Conta para mim a sua ideia.</p>
       <div class="contact-links">
-        <a href="mailto:leticia@levideos.com" class="contact-link">leticia@levideos.com</a>
+        <a href="https://wa.me/5511952754595" class="contact-link" target="_blank" rel="noopener noreferrer">WhatsApp ·
+          (11) 95275-4595</a>
         <!-- <a href="tel:+5511999999999" class="contact-link">+55 11 9 9999-9999</a> -->
         <a href="https://www.instagram.com/leticiasousa_videos/" target="_blank" class="contact-link">Instagram ·
           @leticiasousa_videos</a>
         <a href="#" class="contact-link">São Paulo, Brasil</a>
       </div>
     </div>
-    <div class="contact-form fade-up">
+    <form class="contact-form fade-up" id="contactForm">
       <div class="form-row">
-        <input type="text" class="form-input" placeholder="Seu nome">
+        <input type="text" class="form-input" name="name" placeholder="Seu nome" autocomplete="name" required>
         <div class="form-line"></div>
       </div>
       <div class="form-row">
-        <input type="email" class="form-input" placeholder="Seu e-mail">
+        <select class="form-input" name="service" aria-label="Tipo de serviço" required>
+          <option value="" disabled selected>Tipo de serviço</option>
+          <option value="Pré-wedding">Pré-wedding</option>
+          <option value="Chá revelação">Chá revelação</option>
+          <option value="Ensaio de casal">Ensaio de casal</option>
+          <option value="Ensaio de família">Ensaio de família</option>
+          <option value="Ensaio gestante">Ensaio gestante</option>
+          <option value="Aniversário">Aniversário</option>
+          <option value="Social media">Social media</option>
+          <option value="Outros">Outros</option>
+        </select>
         <div class="form-line"></div>
       </div>
-      <div class="form-row">
-        <input type="text" class="form-input" placeholder="Tipo de ensaio">
+      <div class="form-row" id="otherServiceRow" hidden>
+        <input type="text" class="form-input" name="otherService" placeholder="Qual serviço você procura?" disabled>
         <div class="form-line"></div>
       </div>
-      <div class="form-row">
-        <textarea class="form-input" placeholder="Conta sobre o projeto..."></textarea>
-        <div class="form-line"></div>
-      </div>
-      <button class="btn-send"><span>Enviar Mensagem →</span></button>
-    </div>
+      <button class="btn-send" type="submit"><span>Continuar pelo WhatsApp →</span></button>
+      <p class="form-note">Vamos abrir uma conversa no WhatsApp com sua mensagem pronta para enviar.</p>
+    </form>
   </section>
 
   <footer>
@@ -1872,7 +1911,7 @@
     <div class="footer-note">© 2026 Leticia Sousa · Todos os direitos reservados</div>
     <div class="footer-social">
       <a target="_blank" href="https://www.instagram.com/leticiasousa_videos/">Instagram</a>
-      <a href="#">WhatsApp</a>
+      <a href="https://wa.me/5511952754595" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       <!-- <a href="#">Behance</a> -->
     </div>
   </footer>
@@ -1896,20 +1935,40 @@
 
     // Cursor
     const cur = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
     document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+      cur.style.left = e.clientX + 'px';
+      cur.style.top = e.clientY + 'px';
     });
-    (function animRing() {
-      rx += (mx - rx) * .12; ry += (my - ry) * .12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animRing);
-    })();
+
+    const contactForm = document.getElementById('contactForm');
+    const serviceSelect = contactForm.elements.service;
+    const otherServiceRow = document.getElementById('otherServiceRow');
+    const otherServiceInput = contactForm.elements.otherService;
+
+    serviceSelect.addEventListener('change', () => {
+      const needsOtherService = serviceSelect.value === 'Outros';
+      otherServiceRow.hidden = !needsOtherService;
+      otherServiceInput.disabled = !needsOtherService;
+      otherServiceInput.required = needsOtherService;
+      if (needsOtherService) otherServiceInput.focus();
+    });
+
+    // Open WhatsApp with a clear, prefilled inquiry; no backend or API required.
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const service = formData.get('service') === 'Outros'
+        ? formData.get('otherService')
+        : formData.get('service');
+      const message = [
+        `Olá, me chamo ${formData.get('name')},`,
+        `Tenho interesse no serviço de ${service}.`,
+      ].join('\n');
+      window.location.href = `https://wa.me/5511952754595?text=${encodeURIComponent(message)}`;
+    });
 
     // Ticker
-    const words = ['FOTOGRAFIA', 'FAMÍLIA', 'GESTANTE', 'CASAIS', 'ANIVERSÁRIO', 'MEMÓRIAS', 'CHÁ REVELAÇÃO', 'MOMENTOS', 'FORMATURAS'];
+    const words = ['FOTOGRAFIA', 'FAMÍLIA', 'GESTANTE', 'CASAIS', 'PRÉ-WEDDING', 'SOCIAL MEDIA', 'ANIVERSÁRIO', 'MEMÓRIAS', 'CHÁ REVELAÇÃO', 'MOMENTOS', 'FORMATURAS'];
     const track = document.getElementById('tickerTrack');
     const html = words.map(w => `<span>${w}</span><span class="sep"> · </span>`).join('').repeat(4);
     track.innerHTML = html;
