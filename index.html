@@ -1578,6 +1578,386 @@
         gap: 20px;
       }
     }
+
+    /* ── PROMO MODAL (PRÉ-WEDDING) ── */
+    .promo {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .promo.open {
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .promo-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 16, 16, .72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity .6s ease;
+    }
+
+    .promo.open .promo-backdrop {
+      opacity: 1;
+    }
+
+    .promo-box {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      width: min(980px, 100%);
+      max-height: calc(100vh - 48px);
+      max-height: calc(100dvh - 48px);
+      background: var(--bg);
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, .45);
+      opacity: 0;
+      transform: translateY(40px) scale(.96);
+      transition: opacity .7s cubic-bezier(.16, 1, .3, 1), transform .7s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .promo.open .promo-box {
+      opacity: 1;
+      transform: none;
+    }
+
+    .promo-media {
+      position: relative;
+      min-height: 560px;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    .promo-media video {
+      position: absolute;
+      inset: 0;
+      filter: none;
+      transform: scale(1.08);
+      transition: transform 8s ease;
+    }
+
+    .promo.open .promo-media video {
+      transform: scale(1);
+    }
+
+    .promo-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(17, 16, 16, .1) 40%, rgba(17, 16, 16, .75) 100%);
+    }
+
+    .promo-rec {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: .55rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--bg);
+    }
+
+    .promo-rec::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e0352b;
+      animation: promoBlink 1.2s ease-in-out infinite;
+    }
+
+    .promo-media-caption {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 24px;
+      z-index: 2;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.3;
+      color: var(--bg);
+    }
+
+    .promo-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 56px 48px 44px;
+      overflow-y: auto;
+    }
+
+    .promo-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--black);
+      border-radius: 100px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: .55rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: promoFloat 3s ease-in-out infinite;
+    }
+
+    .promo-title {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      line-height: .95;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .promo-title span {
+      white-space: nowrap;
+    }
+
+    .promo-title em {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: .78em;
+      margin-top: 10px;
+    }
+
+    .promo-text {
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--gray);
+      margin: 22px 0 28px;
+    }
+
+    .promo-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-bottom: 34px;
+      font-size: .85rem;
+    }
+
+    .promo-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .promo-list li::before {
+      content: '✦';
+      font-size: .7rem;
+    }
+
+    .promo-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 28px;
+      background: #1faa59;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Unbounded', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      overflow: hidden;
+      animation: promoPulse 2.2s ease-out infinite;
+      transition: background .3s, transform .3s;
+    }
+
+    .promo-btn:hover {
+      background: #178a48;
+      transform: translateY(-2px);
+    }
+
+    .promo-btn svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .promo-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+      transform: skewX(-20deg);
+      animation: promoShine 3s ease-in-out infinite;
+    }
+
+    .promo-later {
+      align-self: center;
+      margin-top: 16px;
+      background: none;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem;
+      color: var(--gray);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: none;
+    }
+
+    .promo-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--bg);
+      font-size: 1.1rem;
+      color: var(--black);
+      cursor: none;
+      transition: transform .3s, background .3s;
+    }
+
+    .promo-close:hover {
+      background: var(--light);
+      transform: rotate(90deg);
+    }
+
+    @keyframes promoBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .2;
+      }
+    }
+
+    @keyframes promoFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @keyframes promoPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(31, 170, 89, .55);
+      }
+
+      70% {
+        box-shadow: 0 0 0 16px rgba(31, 170, 89, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(31, 170, 89, 0);
+      }
+    }
+
+    @keyframes promoShine {
+      0% {
+        left: -60%;
+      }
+
+      60%,
+      100% {
+        left: 130%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .promo {
+        padding: 12px;
+        align-items: flex-end;
+      }
+
+      .promo-box {
+        grid-template-columns: minmax(0, 1fr);
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        overflow-y: auto;
+      }
+
+      .promo-media {
+        min-height: 0;
+        height: 42vh;
+        height: 42dvh;
+      }
+
+      .promo-media-caption {
+        font-size: 1.1rem;
+        bottom: 18px;
+      }
+
+      .promo-content {
+        padding: 28px 22px 24px;
+        overflow: visible;
+      }
+
+      .promo-badge {
+        margin-bottom: 18px;
+      }
+
+      .promo-title {
+        font-size: 7.2vw;
+      }
+
+      .promo-text {
+        margin: 16px 0 20px;
+        font-size: .9rem;
+      }
+
+      .promo-list {
+        margin-bottom: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .promo-badge,
+      .promo-btn,
+      .promo-btn::after,
+      .promo-rec::before {
+        animation: none;
+      }
+    }
   </style>
 </head>
 
@@ -1916,6 +2296,42 @@
     </div>
   </footer>
 
+  <!-- PROMO MODAL (PRÉ-WEDDING) -->
+  <div class="promo" id="promo" role="dialog" aria-modal="true" aria-labelledby="promoTitle" aria-hidden="true">
+    <div class="promo-backdrop" data-promo-close></div>
+    <div class="promo-box">
+      <button class="promo-close" type="button" aria-label="Fechar" data-promo-close>✕</button>
+      <div class="promo-media">
+        <video id="promoVideo" muted loop playsinline preload="none" poster="./imagens/casal/IMG_2030.jpg">
+          <source src="https://pub-3c8b4eae4aa64d92b30f15512b89535a.r2.dev/ensaio_video_lee.mp4" type="video/mp4">
+        </video>
+        <span class="promo-rec">Rec · Pré-wedding</span>
+        <p class="promo-media-caption">"Antes do sim, existe uma história linda para contar."</p>
+      </div>
+      <div class="promo-content">
+        <span class="promo-badge">✦ Agenda aberta</span>
+        <h2 class="promo-title" id="promoTitle">Vamos<br>fazer um<br><span>pré-wedding?</span><em>a história de vocês, em movimento.</em></h2>
+        <p class="promo-text">
+          Fotos e vídeo para celebrar o amor de vocês antes do grande dia — leve, espontâneo e cheio de emoção.
+        </p>
+        <ul class="promo-list">
+          <li>Fotografia + vídeo cinematográfico</li>
+          <li>Locação escolhida junto com o casal</li>
+          <li>Perfeito para o telão do casamento</li>
+        </ul>
+        <a class="promo-btn" target="_blank" rel="noopener noreferrer"
+          href="https://wa.me/5511952754595?text=Ol%C3%A1%2C%20Let%C3%ADcia!%20Quero%20saber%20mais%20sobre%20o%20ensaio%20pr%C3%A9-wedding%20%F0%9F%92%8D">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35ZM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.31l-.34-.2-3.57.93.95-3.48-.22-.36a9.43 9.43 0 0 1-1.45-5.03c0-5.2 4.24-9.44 9.45-9.44 2.52 0 4.89.99 6.67 2.77a9.37 9.37 0 0 1 2.76 6.68c0 5.21-4.24 9.44-9.44 9.44Zm8.04-17.48A11.3 11.3 0 0 0 12.05.7C5.78.7.68 5.8.68 12.06c0 2 .52 3.96 1.52 5.68L.58 23.3l5.7-1.5a11.33 11.33 0 0 0 5.77 1.47c6.26 0 11.36-5.1 11.37-11.36 0-3.04-1.18-5.89-3.33-8.04Z" />
+          </svg>
+          <span>Quero meu pré-wedding</span>
+        </a>
+        <button class="promo-later" type="button" data-promo-close>Agora não</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
@@ -2020,6 +2436,32 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // Promo modal: opens once per session, 10s after the visitor arrives.
+    const promo = document.getElementById('promo');
+    const promoVideo = document.getElementById('promoVideo');
+
+    function openPromo() {
+      promo.classList.add('open');
+      promo.setAttribute('aria-hidden', 'false');
+      promoVideo.play().catch(() => { });
+      try { sessionStorage.setItem('promoSeen', '1'); } catch (e) { }
+    }
+
+    function closePromo() {
+      promo.classList.remove('open');
+      promo.setAttribute('aria-hidden', 'true');
+      promoVideo.pause();
+    }
+
+    promo.querySelectorAll('[data-promo-close]').forEach(el => el.addEventListener('click', closePromo));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && promo.classList.contains('open')) closePromo();
+    });
+
+    let promoSeen = false;
+    try { promoSeen = sessionStorage.getItem('promoSeen') === '1'; } catch (e) { }
+    if (!promoSeen) setTimeout(openPromo, 10000);
 
     // Parallax hero photos
     window.addEventListener('scroll', () => {
